@@ -10,14 +10,14 @@ class EmployeeSeeder extends Seeder
     public function run()
     {
         Employee::create([
-            'name' => 'James Doe',
-            'position' => 'Manager',
+            'name' => 'James Montealto',
+            'position' => 'Web Developer',
             'salary' => 50000,
         ]);
 
         Employee::create([
-            'name' => 'Jane Smith',
-            'position' => 'Developer',
+            'name' => 'Shirah Rahiol',
+            'position' => 'Chemist',
             'salary' => 45000,
         ]);
     }

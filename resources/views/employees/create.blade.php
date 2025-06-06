@@ -1,36 +1,114 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Add Employee<br></title>
+    <title>Add Employee</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .form-container {
+            background-color: #fff;
+            padding: 30px 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        label {
+            display: block;
+            text-align: left;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        button {
+            margin-top: 20px;
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        .error {
+            color: red;
+            margin-top: 10px;
+            text-align: left;
+        }
+
+        a {
+            display: block;
+            margin-top: 20px;
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
-    <h1>Add New Employee <br></h1>
+    <div class="form-container">
+        <h1>Add New Employee</h1>
 
-    @if ($errors->any())
-        <div style="color: red;">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
+        @if ($errors->any())
+            <div class="error">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
 
-    <form action="{{ route('employees.store') }}" method="POST">
-        @csrf
-        <label>Name:</label><br>
-        <input type="text" name="name" value="{{ old('name') }}"><br><br>
+        <form action="{{ route('employees.store') }}" method="POST">
+            @csrf
 
-        <label>Position:</label><br>
-        <input type="text" name="position" value="{{ old('position') }}"><br><br>
+            <label for="name">Name:</label>
+            <input type="text" name="name" value="{{ old('name') }}" required>
 
-        <label>Salary:</label><br>
-        <input type="number" name="salary" value="{{ old('salary') }}"><br><br>
+            <label for="position">Position:</label>
+            <input type="text" name="position" value="{{ old('position') }}" required>
 
-        <button type="submit">Add Employee</button>
-    </form>
+            <label for="salary">Salary:</label>
+            <input type="number" name="salary" value="{{ old('salary') }}" required>
 
-    <br>
-    <a href="{{ route('employees.index') }}">Back to List</a>
+            <button type="submit">Add Employee</button>
+        </form>
+
+        <a href="{{ route('employees.index') }}">← Back to List</a>
+    </div>
 </body>
 </html>
