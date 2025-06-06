@@ -1,17 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Employee List</title>
+    <title>Employees</title>
 </head>
 <body>
-    <h1>Employees</h1>
+    <h1>Employee List</h1>
+
+    @if(session('success'))
+        <p style="color: green;">{{ session('success') }}</p>
+    @endif
+
+    <a href="{{ route('employees.create') }}">Add New Employee</a>
+
     <table border="1" cellpadding="10">
         <tr>
             <th>Name</th>
             <th>Position</th>
             <th>Salary</th>
         </tr>
-        @foreach($employees as $employee)
+        @foreach ($employees as $employee)
         <tr>
             <td>{{ $employee->name }}</td>
             <td>{{ $employee->position }}</td>
