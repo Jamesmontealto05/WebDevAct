@@ -15,14 +15,37 @@
             width: 80%;
             margin: 0 auto;
             background-color: #fff;
-            padding: 30px 40px;
+            padding: 30px 40px 70px; /* Added bottom padding for button space */
             border-radius: 10px;
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+            text-align: left; /* so text inside aligns left */
         }
 
         h1 {
             margin-bottom: 20px;
             color: #333;
+            text-align: center;
+        }
+
+        .logout-form {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+        }
+
+        .logout-btn {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .logout-btn:hover {
+            background-color: #c82333;
         }
 
         .success-message {
@@ -30,14 +53,19 @@
             margin-bottom: 15px;
         }
 
+        /* Add New Employee button fixed bottom-right inside container */
         .add-button {
-            display: inline-block;
-            margin-bottom: 20px;
+            position: absolute;
+            bottom: 20px;
+            right: 40px;
             padding: 10px 20px;
             background-color: #28a745;
             color: white;
             text-decoration: none;
             border-radius: 5px;
+            font-weight: bold;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+            transition: background-color 0.3s ease;
         }
 
         .add-button:hover {
@@ -92,11 +120,14 @@
     <div class="container">
         <h1>Employee List</h1>
 
+        <form class="logout-form" method="POST" action="{{ route('logout') }}">
+            @csrf
+            <button type="submit" class="logout-btn" onclick="return confirm('Are you sure you want to logout?')">Logout</button>
+        </form>
+
         @if(session('success'))
             <p class="success-message">{{ session('success') }}</p>
         @endif
-
-        <a class="add-button" href="{{ route('employees.create') }}">Add New Employee</a>
 
         <table>
             <tr>
@@ -122,6 +153,8 @@
             </tr>
             @endforeach
         </table>
+
+        <a class="add-button" href="{{ route('employees.create') }}">Add New Employee</a>
     </div>
 </body>
 </html>

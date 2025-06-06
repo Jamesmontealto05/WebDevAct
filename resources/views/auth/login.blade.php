@@ -50,6 +50,18 @@
             margin-bottom: 10px;
             font-size: 14px;
         }
+
+        .register-link {
+            margin-top: 15px;
+            display: block;
+            font-size: 14px;
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .register-link:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
@@ -74,6 +86,8 @@
             <input type="password" name="password" placeholder="Password" required>
             <button type="submit">Login</button>
         </form>
+
+        <a href="{{ route('register.create') }}" class="register-link">Register Account</a>
     </div>
 </body>
 </html>
